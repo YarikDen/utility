@@ -1,0 +1,58 @@
+//---------------------------------------------------------------------------
+
+#ifndef mainH
+#define mainH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.AppEvnts.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Menus.hpp>
+#include "Add.h"
+#include "Settings.h"
+#include "Show_logs.h"
+#include "About.h"
+#include "CFolderWatcher.h"
+#include "HelpLib.h"
+#include <list>
+#include <iterator>
+
+//---------------------------------------------------------------------------
+class TForm_main : public TForm
+{
+__published:	// IDE-managed Components
+	TMainMenu *MainMenu1;
+	TPopupMenu *PopupMenu1;
+	TTrayIcon *TrayIcon1;
+	TApplicationEvents *ApplicationEvents1;
+	TMenuItem *Nm_Addfolder;
+	TMenuItem *Nm_Settings;
+	TMenuItem *Nm_Show_logs;
+	TMenuItem *Nm_About;
+	TMenuItem *Np_Maximize;
+	TMenuItem *Np_Exit;
+	TMenuItem *Np_About;
+	void __fastcall Np_MaximizeClick(TObject *Sender);
+	void __fastcall ApplicationEvents1Minimize(TObject *Sender);
+	void __fastcall Np_ExitClick(TObject *Sender);
+	void __fastcall FormActivate(TObject *Sender);
+	void __fastcall Nm_SettingsClick(TObject *Sender);
+	void __fastcall Nm_AddfolderClick(TObject *Sender);
+	void __fastcall Nm_Show_logsClick(TObject *Sender);
+	void __fastcall Np_AboutClick(TObject *Sender);
+	void __fastcall Nm_AboutClick(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall FormPaint(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TForm_main(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm_main *Form_main;
+extern std::list<CFolderWatcher> g_lst_FolderList;
+
+
+#endif

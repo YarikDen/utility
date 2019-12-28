@@ -1,0 +1,72 @@
+#ifndef CFolderWatcherH
+#define CFolderWatcherH
+
+#include <Windows.h>
+#include <process.h>
+#include <ctime>
+#include <System.Classes.hpp>
+#include "HelpLib.h"
+
+typedef struct LogArgs{//thread function arguments
+   String wstr_Folder;//Name of folder
+   String wstr_LogFile;//Name of Logfile
+   DWORD  dw_Filter;//Notify filter
+   BOOL B_Subfolder;//Look for subfolders
+   HANDLE h_Folder;//Handle of folder
+}LogInfo;
+
+void WriteData(String wstrSrc,HANDLE hFile );//Write data to file
+
+
+DWORD WINAPI ThreadNotificator( LPVOID lpParam );//Thread function
+
+
+class CFolderWatcher{
+
+private:
+	LogInfo Log;
+	HANDLE h_Thread;        //Handle of thread
+	DWORD dw_id;            //ID of thread
+    BOOL B_State;           //Stopped or running state
+
+
+public:
+	CFolderWatcher(String wstrNameFolder = "",String wstr_Logfile = "",DWORD dwFilter = 0x01,BOOL BSubfolder= FALSE);//default constructor
+
+
+	~CFolderWatcher(){ //destructor
+
+	}
+
+	void StopWatch(void);// stop
+
+	void ResumeWatch(void); //resume
+
+	void TerminateWatch(void);//terminate
+
+	BOOL GetState(void);//get state
+
+	String GetFolderName(void);//get folder name
+
+	DWORD GetFilter(void); //get value of filter
+
+    BOOL GetSubfolder(void); //get value of subfolder
+
+	String GetLogfile(void);//get name of log file
+
+	HANDLE GetHandleWatcher(void);//get handle of watcher
+
+	void SetFilter(DWORD dwFilter); //set filter
+
+	void SetFolderName(String wstrName); //set folder name
+
+	void SetSubfolder(BOOL BSubfolder);//set follow subfilders
+
+	void SetLogfile(String wstr_Log);//set name of file where will be written changes
+
+	void InitThreadWatch(void);//Initialize Folder Watcher
+
+};
+
+#endif
+

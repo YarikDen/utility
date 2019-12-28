@@ -1,0 +1,8 @@
+Bitmap_1 BITMAP "PorgramIcons\\about-icon.bmp"
+Icon_2 ICON "PorgramIcons\\about.ico"
+Bitmap_2 BITMAP "PorgramIcons\\Add.bmp"
+Bitmap_3 BITMAP "PorgramIcons\\Exit.bmp"
+Bitmap_4 BITMAP "PorgramIcons\\Maximize.bmp"
+Bitmap_5 BITMAP "PorgramIcons\\Settings.bmp"
+Bitmap_6 BITMAP "PorgramIcons\\Show_changes.bmp"
+Icon_1 ICON "PorgramIcons\\Uriy1966-Steel-System-User.ico"

@@ -1,0 +1,126 @@
+#ifndef CFolderWatcherH
+#define CFolderWatcherH
+
+#include <Windows.h>
+#include <process.h>
+#include <ctime>
+#include <System.Classes.hpp>
+
+typedef struct _Args{//thread function arguments
+   String wstr_Folder;
+   String wstr_LogFile;
+   DWORD  dw_Filter;
+   BOOL B_Subfolder;
+   HANDLE h_Folder;
+}Args,*PArgs;
+
+void Writeutf8Data(String wstrSrc,HANDLE hFile );//Write data to file
+
+
+DWORD WINAPI ThreadNotificator( LPVOID lpParam );//Thread function
+
+
+class CFolderWatcher{
+
+private:
+	String wstr_Folder;     //Name of folder
+	String wstr_LogFile;    //Name of Logfile
+	DWORD  dw_Filter;       //Notify filter
+	HANDLE h_Thread;        //Handle of thread
+	HANDLE h_Folder;         //Handle of folder
+	DWORD dw_id;            //ID of thread
+	BOOL B_Subfolder;       //Look for subfolders
+	BOOL B_State;           //State of thread
+
+
+public:
+	//FolderWatcher(String strFolder,DWORD dwFilter,State);
+	CFolderWatcher(String wstrNameFolder = "",String wstr_Logfile = "",DWORD dwFilter = 0x01,BOOL BSubfolder= FALSE);//default constructor
+
+
+/*	CFolderWather(const CFolderWatcher & copy_object){//copy constructor
+		this->dw_Filter = copy_object.dw_Filter;
+		this->wstr_LogFile = copy_object.wstr_LogFile;
+		this->B_State = copy_object.B_State;
+		this->h_Thread = copy_object.h_Thread;
+		this->h_Folder = copy_object.h_Folder;
+		this->dw_id = copy_object.dw_id;
+		this->wstr_Folder = copy_object.wstr_Folder;
+		this->B_Subfolder =  copy_object.B_Subfolder;
+	}
+    */
+	~CFolderWatcher(){ //destructor
+
+	}
+
+	void StopWatch(void);// stop
+
+	void ResumeWatch(void); //resume
+
+	void TerminateWatch(void);//terminate
+
+	BOOL GetState(void);//get state
+
+	String GetFolderName(void);//get folder name
+
+	DWORD GetFilter(void){ //get value of filter
+		return this->dw_Filter;
+	}
+
+    BOOL GetSubfolder(void){ //get value of subfolder
+        return this->B_Subfolder;
+	}
+
+	String GetLogfile(void){//get name of log file
+		return this->wstr_LogFile;
+	}
+
+	HANDLE GetHandleWatcher(){
+        this->h_Thread;
+	}
+
+	void SetFilter(DWORD dwFilter){ //set filter
+		this->dw_Filter = dwFilter;
+	}
+
+	void SetFolderName(String wstrName){ //set folder name
+		this->wstr_Folder=wstrName;
+	}
+
+	void SetSubfolder(BOOL BSubfolder){//set follow subfilders
+		this->B_Subfolder = BSubfolder;
+	}
+
+	void SetLogfile(String wstr_Log){//set name of file where will be written changes
+		this->wstr_LogFile = wstr_Log;
+	}
+
+
+
+	void InitThreadWatch(void){//Initialize Folder Watcher
+		DWORD id = 0;
+		this->h_Folder = CreateFileW( //open folder
+			this->wstr_Folder.c_str(),
+			FILE_LIST_DIRECTORY ,FILE_SHARE_WRITE | FILE_SHARE_READ | FILE_SHARE_DELETE,
+			NULL,
+			OPEN_EXISTING,
+			FILE_FLAG_BACKUP_SEMANTICS,
+			NULL);
+
+		Args args;
+		ZeroMemory(&args,sizeof(Args));
+		args.wstr_Folder = this->wstr_Folder;
+		args.dw_Filter = this->dw_Filter;
+		args.B_Subfolder = this->B_Subfolder;
+		args.wstr_LogFile = this->wstr_LogFile;
+		args.h_Folder = this->h_Folder;
+		this->h_Thread =  CreateThread(NULL,0,&ThreadNotificator,(PArgs)&args,CREATE_SUSPENDED,&id); //sjjsjjjjjjjjjjSTOp
+		this->dw_id = id;
+		if(this->h_Thread == NULL){
+			ExitProcess(0);
+		}
+		SetThreadPriority(this->h_Thread,THREAD_PRIORITY_IDLE);
+	}
+};
+
+#endif

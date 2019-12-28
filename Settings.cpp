@@ -1,0 +1,95 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Settings.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm_Settings *Form_Settings;
+
+extern std::list<CFolderWatcher> g_lst_FolderList;  //usage in other files extern and <<definition>> without extern
+//---------------------------------------------------------------------------
+__fastcall TForm_Settings::TForm_Settings(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_Settings::FormActivate(TObject *Sender)
+{
+
+	if(!g_lst_FolderList.empty()){
+	   SetList(g_lst_FolderList, Form_Settings->ListBox_Folder);
+	   Set_VertScroll(Form_Settings->ListBox_Folder);
+	}
+
+	Form_Settings->Refresh();
+}
+//---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TForm_Settings::Button_DeleteClick(TObject *Sender)
+{
+	if(ListBox_Folder->ItemIndex != -1 && ListBox_Folder->Items->Count != 0 ){
+		if (DeleteItem(ListBox_Folder,&g_lst_FolderList) == TRUE){
+			ShowMessage("Delete success!!!");
+		}
+	}else{
+        ShowMessage("Please,Choose item or add (if List is empty)!!!");
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_Settings::Button_StopClick(TObject *Sender)
+{
+	if(!g_lst_FolderList.empty() && ListBox_Folder->ItemIndex != -1){
+		StopWatcher(&g_lst_FolderList,ListBox_Folder->Items->Strings[ListBox_Folder->ItemIndex]);
+	}else{
+        ShowMessage("Please,Choose item or add (if List is empty)!!!");
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_Settings::Button_StartClick(TObject *Sender)
+{
+	if(!g_lst_FolderList.empty() && ListBox_Folder->ItemIndex != -1){
+		ResumeWatcher(&g_lst_FolderList,ListBox_Folder->Items->Strings[ListBox_Folder->ItemIndex]);
+	}else{
+        ShowMessage("Please,Choose item or add (if List is empty)!!!");
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_Settings::Button_ShowFilterClick(TObject *Sender)
+{
+	String wstr_Data = "";
+	if(!g_lst_FolderList.empty() && ListBox_Folder->ItemIndex != -1){
+		wstr_Data = GetFilter(&g_lst_FolderList,ListBox_Folder->Items->Strings[ListBox_Folder->ItemIndex]);
+		Memo_Filter->Text = wstr_Data;
+	}else{
+        ShowMessage("Please,Choose item or add (if List is empty)!!!");
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_Settings::Button_LogClick(TObject *Sender)
+{
+	if(!g_lst_FolderList.empty() && ListBox_Folder->ItemIndex != -1){
+        std::list<CFolderWatcher>::iterator iter = g_lst_FolderList.begin();
+		for (;iter != g_lst_FolderList.end();iter++){
+			if(WideCompareText((*iter).GetFolderName(),ListBox_Folder->Items->Strings[ListBox_Folder->ItemIndex]) == 0){
+				ShowMessage((*iter).GetLogfile());//interrupt watching
+				break;
+			}
+		}
+
+	}else{
+		ShowMessage("Please,Choose item or add (if List is empty)!!!");
+	}
+}
+//---------------------------------------------------------------------------
+

@@ -1,0 +1,119 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "main.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm_main *Form_main;
+bool gb_Create;
+String g_wstr_Main_Directory;
+
+
+
+
+
+//---------------------------------------------------------------------------
+__fastcall TForm_main::TForm_main(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::Np_MaximizeClick(TObject *Sender)
+{
+	TrayIcon1->Visible = false;
+	Show();
+	WindowState = wsNormal;
+	Application->BringToFront();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::ApplicationEvents1Minimize(TObject *Sender)
+{
+    Form_main->Hide();
+	Form_main->WindowState = wsMinimized;
+
+  // Show the animated tray icon and also a hint balloon.
+	TrayIcon1->Visible = true;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::Np_ExitClick(TObject *Sender)
+{
+ 		Form_main->Close();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::FormActivate(TObject *Sender)
+{
+	if(gb_Create == false){
+		Application->CreateForm(__classid(TForm_Settings), &Form_Settings);
+		Application->CreateForm(__classid(TForm_Show_logs), &Form_Show_logs);
+        Application->CreateForm(__classid(TForm_Add_folder), &Form_Add_folder);
+		Form_Add_folder->Visible = true;
+		gb_Create = true;
+		Nm_Addfolder->Enabled = false;
+	}
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::Nm_SettingsClick(TObject *Sender)
+{
+	Form_Settings->Show();
+	Nm_Addfolder->Enabled = true;
+	Nm_Settings->Enabled = false;
+	Nm_Show_logs->Enabled = true;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::Nm_AddfolderClick(TObject *Sender)
+{
+	Form_Add_folder->Show();
+	Nm_Addfolder->Enabled = false;
+	Nm_Settings->Enabled = true;
+	Nm_Show_logs->Enabled = true;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::Nm_Show_logsClick(TObject *Sender)
+{
+	Form_Show_logs->Show();
+	Nm_Addfolder->Enabled = true;
+	Nm_Settings->Enabled = true;
+	Nm_Show_logs->Enabled = false;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::Np_AboutClick(TObject *Sender)
+{
+	Form_Info->ShowModal();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::Nm_AboutClick(TObject *Sender)
+{
+    Form_Info->ShowModal();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm_main::FormClose(TObject *Sender, TCloseAction &Action)
+{
+    LoadToFile(&g_lst_FolderList);//save active FolderWatchers
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_main::FormCreate(TObject *Sender)
+{   WCHAR w_c[MAX_PATH];
+	GetCurrentDirectoryW(MAX_PATH,w_c);
+	g_wstr_Main_Directory = Format("%s",ARRAYOFCONST((WideCharToString(w_c))));
+	LoadFromFileFolderWatcher(&g_lst_FolderList);//Load FolderWathers from file
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_main::FormPaint(TObject *Sender)
+{
+	if(!g_lst_FolderList.empty()){
+        std::list<CFolderWatcher>::iterator iter = g_lst_FolderList.begin();
+		for (;iter != lst_FolderList.end();iter++){
+
+			(*it).TerminateWatch();//interrupt watching
+				plst_List->erase(it);//erase watcher
+		}
+	}
+}
+//---------------------------------------------------------------------------
+

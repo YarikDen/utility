@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.891,=D:\Embarcadero_projects_C++\New\PorgramIcons\Settings.bmp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.150,D:\Embarcadero_projects_C++\New\Add.cpp=D:\Embarcadero_projects_C++\New\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.150,D:\Embarcadero_projects_C++\New\Add.dfm=D:\Embarcadero_projects_C++\New\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.150,D:\Embarcadero_projects_C++\New\Add.h=D:\Embarcadero_projects_C++\New\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.779,D:\Embarcadero_projects_C++\New\HelpLib.h=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.849,=D:\Embarcadero_projects_C++\New\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.365,=D:\Embarcadero_projects_C++\New\PorgramIcons\about.ico</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.099,=D:\Embarcadero_projects_C++\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.871,D:\Embarcadero_projects_C++\New\About.cpp=D:\Embarcadero_projects_C++\New\Unit4.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.410,D:\Embarcadero_projects_C++\New\CFolderWatcher.hpp=D:\Embarcadero_projects_C++\New\CFolderWatcher.hpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.411,=D:\Embarcadero_projects_C++\New\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.900,=D:\Embarcadero_projects_C++\New\File1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.897,D:\Embarcadero_projects_C++\New\File1.cpp=D:\Embarcadero_projects_C++\New\СFolderWatcher.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.759,=D:\Embarcadero_projects_C++\New\PorgramIcons\about-icon.bmp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.762,D:\Embarcadero_projects_C++\New\Show_logs.h=D:\Embarcadero_projects_C++\New\Unit3.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.871,D:\Embarcadero_projects_C++\New\About.h=D:\Embarcadero_projects_C++\New\Unit4.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.828,=D:\Embarcadero_projects_C++\New\PorgramIcons\Exit.bmp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.637,D:\Embarcadero_projects_C++\New\main.cpp=D:\Embarcadero_projects_C++\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.637,D:\Embarcadero_projects_C++\New\main.h=D:\Embarcadero_projects_C++\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.679,D:\Embarcadero_projects_C++\New\Thread.h=D:\Embarcadero_projects_C++\New\Unit1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.806,=D:\Embarcadero_projects_C++\New\PorgramIcons\Add.bmp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.430,=D:\Embarcadero_projects_C++\New\FolderWatcherClass.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.679,D:\Embarcadero_projects_C++\New\Thread.cpp=D:\Embarcadero_projects_C++\New\Unit1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.189,D:\Embarcadero_projects_C++\New\Thread.cpp=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.657,=D:\Embarcadero_projects_C++\New\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.922,=D:\Embarcadero_projects_C++\New\PorgramIcons\Show_changes.bmp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.907,D:\Embarcadero_projects_C++\New\Settings.dfm=D:\Embarcadero_projects_C++\New\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.907,D:\Embarcadero_projects_C++\New\Settings.h=D:\Embarcadero_projects_C++\New\Unit2.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.871,D:\Embarcadero_projects_C++\New\About.dfm=D:\Embarcadero_projects_C++\New\Unit4.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.061,=D:\Embarcadero_projects_C++\New\PorgramIcons\Uriy1966-Steel-System-User.ico</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.762,D:\Embarcadero_projects_C++\New\Show_logs.dfm=D:\Embarcadero_projects_C++\New\Unit3.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.187,D:\Embarcadero_projects_C++\New\Folder_Watcher.cbproj=D:\Embarcadero_projects_C++\Project1.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.762,D:\Embarcadero_projects_C++\New\Show_logs.cpp=D:\Embarcadero_projects_C++\New\Unit3.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.734,=D:\Embarcadero_projects_C++\New\File1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.402,D:\Embarcadero_projects_C++\New\File1.h=D:\Embarcadero_projects_C++\New\CFolderWatcher.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.521,=D:\Embarcadero_projects_C++\New\File1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.785,D:\Embarcadero_projects_C++\New\File1.h=D:\Embarcadero_projects_C++\New\HelpLib.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.766,=D:\Embarcadero_projects_C++\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.218,=D:\Embarcadero_projects_C++\New\Unit3.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.280,=D:\Embarcadero_projects_C++\New\Unit4.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.637,D:\Embarcadero_projects_C++\New\main.dfm=D:\Embarcadero_projects_C++\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.964,D:\Embarcadero_projects_C++\New\Folder_WatcherPCH1.h=D:\Embarcadero_projects_C++\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.844,=D:\Embarcadero_projects_C++\New\PorgramIcons\Maximize.bmp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.907,D:\Embarcadero_projects_C++\New\Settings.cpp=D:\Embarcadero_projects_C++\New\Unit2.cpp</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,73 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Add.h"
+
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm_Add_folder *Form_Add_folder;
+std::list<CFolderWatcher> g_lst_FolderList;
+//---------------------------------------------------------------------------
+__fastcall TForm_Add_folder::TForm_Add_folder(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm_Add_folder::Button_CreateClick(TObject *Sender)
+{   SFolderLog fl_Log = {"","",0,0};
+	WCHAR w_str_CurrentDir[MAX_PATH] = {};
+	fl_Log.wstr_Folder = DirectoryListBox1->Directory;
+	fl_Log.wstr_Logfile = "";
+	fl_Log.B_SubFolder = FALSE;
+	fl_Log.dwFilter = SetFilterWatcher(CheckListBox_Filter);
+	BOOL B_Subfolder = FALSE;
+	if(CheckBox_Subfolder->Checked){
+		fl_Log.B_SubFolder = TRUE;
+	}
+
+	GetCurrentDirectoryW(MAX_PATH,w_str_CurrentDir);
+	if(OpenDialog_FileLog->Execute()){
+		fl_Log.wstr_Logfile = OpenDialog_FileLog->FileName ;
+		if(!g_lst_FolderList.empty()){//if list is not empty
+
+			if(ItemIsExist(g_lst_FolderList,fl_Log.wstr_Folder) == FALSE && IsExistsLog(g_lst_FolderList,fl_Log.wstr_Logfile) == FALSE ){ //if not exist
+				if(fl_Log.dwFilter != 0 ){
+					SetupElem(&g_lst_FolderList,fl_Log);
+					ShowMessage("Click to <<Settings>> for configure Folder Watcher for this folder ");
+				// MessageDlg("Добре",mtCustom,TMsgDlgButtons()<<mbCancel,0);//good Message for Attention
+				}else{
+				ShowMessage("Please, Set Filter!!!");
+				}
+			}else{
+				ShowMessage("This Folder or  log file have chosen yet!");
+			}
+		}else{
+			if(fl_Log.dwFilter != 0){
+                SetupElem(&g_lst_FolderList,fl_Log);
+				ShowMessage("Click to <<Settings>> for configure Folder Watcher for this folder ");
+			}else{
+				ShowMessage("Please, Set Filter!!!");
+			}
+		}
+	}else{
+        ShowMessage("Please, Select LogFile to save folder changes!!!");
+	}
+    SetCurrentDirectoryW(w_str_CurrentDir);
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TForm_Add_folder::DirectoryListBox1DblClick(TObject *Sender)
+{
+    DirectoryListBox1->Hint = DirectoryListBox1->Items->Strings[DirectoryListBox1->ItemIndex];
+}
+//---------------------------------------------------------------------------
+
